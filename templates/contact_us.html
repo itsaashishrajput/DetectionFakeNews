@@ -6,14 +6,144 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fake News Detection</title>
-
+  <!-- <link rel="stylesheet" href="style.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../templates/style.css">
+  <style>
+      .center{
+    justify-content: center;
+
+    display: flex;
+}
+a{
+    color: black;
+}
+a:active{
+    color: blue;
+}
+a[tabindex]:focus {
+    color:blue;
+    outline: none;
+}*{
+  box-sizing: border-box;
+}
+
+body{
+  background:#92bde7;
+  color:#485e74;
+  line-height:1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding:1em;
+}
+
+.container{
+  max-width:1170px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:1em;
+}
+
+ul{
+  list-style: none;
+  padding:0;
+}
+
+.brand{
+  text-align: center;
+}
+
+.brand span{
+  color:#fff;
+}
+
+.wrapper{
+  box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+}
+
+.wrapper > *{
+  padding: 1em;
+}
+
+.company-info{
+  background:#c9e6ff;
+}
+
+.company-info h3, .company-info ul{
+  text-align: center;
+  margin:0 0 1rem 0;
+}
+
+.contact{
+  background:#f9feff;
+}
+
+/* FORM STYLES */
+.contact form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:20px;
+}
+
+.contact form label{
+  display:block;
+}
+
+.contact form p{
+  margin:0;
+}
+
+.contact form .full{
+  grid-column: 1 / 3;
+}
+
+.contact form button, .contact form input, .contact form textarea{
+  width:100%;
+  padding:1em;
+  border:1px solid #c9e6ff;
+}
+
+.contact form button{
+  background:#c9e6ff;
+  border:0;
+  text-transform: uppercase;
+}
+
+.contact form button:hover,.contact form button:focus{
+  background:#92bde7;
+  color:#fff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+
+.alert{
+  text-align: center;
+  padding:10px;
+  background:#79c879;
+  color:#fff;
+  margin-bottom:10px;
+  display:none;
+}
+
+/* LARGE SCREENS */
+@media(min-width:700px){
+  .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .wrapper > *{
+    padding:2em;
+  }
+
+  .company-info h3, .company-info ul, .brand{
+    text-align: left;
+  }
+}
+  </style>
 </head>
 
 <body style="background:#f9feff;">
@@ -30,7 +160,7 @@
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a class="mr-5 hover:text-gray-900" tabindex="1" href="/">Home</a>
-        <a class="mr-5 hover:text-gray-900" tabindex="1" href="/about_us">About Us</a>
+        <!-- <a class="mr-5 hover:text-gray-900" tabindex="1" href="/about_us">About Us</a> -->
         <a class="mr-5 hover:text-gray-900" tabindex="1" href="/prediction">Prediction</a>
         <a class="mr-5 hover:text-gray-900" tabindex="1" href="/contact_us">Contact Us</a>
       </nav>
@@ -39,78 +169,7 @@
   </header>
   <hr>
 
-  
- 
-  
-  <!-- <section class="text-gray-600 body-font relative">
-    <div class="container mx-auto">
-      <div class="alert">Your message has been sent</div>
-    </div>
-  </section>
-  <section class="text-gray-600 body-font relative">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full -mb-5">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" style="font-size: 50px;">Contact Us</h1>
-      </div>
-      <div class="lg:w-1/2 md:w-2/3 mx-auto">
-        <div class="flex flex-wrap -m-2">
-          <form id="contactForm">
-            <div class="p-2 w-1/2">
-              <div class="relative">
-                <label for="name" class="leading-7 text-sm text-gray-600" >Name</label>
-                <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" style="width: 500px;" required />
-              </div>
-            </div>
-            <div class="p-2 w-1/2">
-              <div class="relative">
-                <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" style="width: 500px;" required />
-              </div>
-            </div>
-            <div class="p-2 w-full">
-              <div class="relative">
-                <label for="message" class="leading-7 text-sm text-gray-600">Message</label> 
-                <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" placeholder="Drop your Message Herep...." style="width: 500px;" required ></textarea>
-              </div>
-            </div>
-            <div class="p-2 w-full">
-              <button class="flex mx-auto text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg" type="submit">Submit</button>
-            </div>
 
-          </form>
-          <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-            <a class="text-blue-500">*****@reck.ac.in</a>
-            <p class="leading-normal my-2">Rajkiya Engineering College 
-              <br>Kannauj
-            </p>
-            <span class="inline-flex">
-              <a class="text-gray-500">
-                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                </svg>
-              </a>
-              <a class="ml-4 text-gray-500">
-                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                </svg>
-              </a>
-              <a class="ml-4 text-gray-500">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                </svg>
-              </a>
-              <a class="ml-4 text-gray-500">
-                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                </svg>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
 
   <section class="text-gray-600 body-font relative mt-20 mb-20">
     <div class="container px-5 py-24 mx-auto">
@@ -206,8 +265,74 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase (ADD YOUR OWN DATA)
+var config = {
+  // apiKey: "xxxxx",
+  // authDomain: "xxxxx",
+  // databaseURL: "xxxxx",
+  // projectId: "xxxxx",
+  // storageBucket: "xxxxx",
+  // messagingSenderId: "xxxxx"
+  // const firebaseConfig = {
+    apiKey: "AIzaSyCzpU86g9aL1fRX2vWsbX_eF4fuBldfAvM",
+    authDomain: "feedback-form-f62be.firebaseapp.com",
+    databaseURL: "https://feedback-form-f62be-default-rtdb.firebaseio.com",
+    projectId: "feedback-form-f62be",
+    storageBucket: "feedback-form-f62be.appspot.com",
+    messagingSenderId: "995527550451",
+    appId: "1:995527550451:web:9f426c8b3a128118c11e86",
+    measurementId: "G-0JZQ8B7QYX"
+  };
+// };
+firebase.initializeApp(config);
 
-  <script src="script.js"></script>
+// Reference messages collection
+var messagesRef = firebase.database().ref('messages');
+
+// Listen for form submit
+document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+// Submit form
+function submitForm(e){
+  e.preventDefault();
+
+  // Get values
+  var name = getInputVal('name');
+  var email = getInputVal('email');
+  var message = getInputVal('message');
+
+  // Save message
+  saveMessage(name, email, message);
+
+  // Show alert
+  document.querySelector('.alert').style.display = 'block';
+
+  // Hide alert after 3 seconds
+  setTimeout(function(){
+    document.querySelector('.alert').style.display = 'none';
+  },3000);
+
+  // Clear form
+  document.getElementById('contactForm').reset();
+}
+
+// Function to get get form values
+function getInputVal(id){
+  return document.getElementById(id).value;
+}
+
+// Save message to firebase
+function saveMessage(name, email, message){
+  var newMessageRef = messagesRef.push();
+  newMessageRef.set({
+    name: name,
+    email:email,
+    message:message
+  });
+}
+  </script>
+  <!-- <script src="script.js"></script> -->
 </body>
 
 </html>
